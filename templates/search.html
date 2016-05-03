@@ -1,0 +1,28 @@
+<html>
+<head>
+<title>Search</title>
+</head>
+<body>
+<div class=page>
+  <h1>Eaves Spotify Search</h1>
+  {% if query %}
+  <strong>{{ query }}</strong>
+  {% endif %}
+  {% if results %}
+  <ul>
+  {% endif%}
+  {% for result in results %}
+    <li><a href="/spotify/play/{{ result.id }}">{{ result.name }}</a></li>
+  {% else %}
+    <form method="post" action="/spotify/search">
+      <label for="query">Text query:</label>
+      <input type="text" name="query" /><br />
+      <input type="submit" />
+    </form>
+  {% endfor %}
+  {% if results %}
+  </ul>
+  {% endif %}
+</div>
+</body>
+</html>
